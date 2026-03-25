@@ -1,0 +1,60 @@
+{
+  "listen_port": 8088,
+  "public_base_url": "http://your-server-ip:8088",
+  "poll_interval_seconds": 0,
+  "projects": [
+    {
+      "name": "project-a",
+      "repo_url": "http://your-git-host/group/project-a.git",
+      "repo_url_with_auth": "http://username:password@your-git-host/group/project-a.git",
+      "branch": "main",
+      "repo_dir": "/opt/auto-cicd/projects/project-a",
+      "build_subdir": "",
+      "settings_xml": "",
+      "maven_repo_local": "/opt/auto-cicd/repository",
+      "pre_build_modules": [],
+      "target_module": "target-module",
+      "artifact_glob": "*.tar.gz",
+      "notify": {
+        "title": "Auto Build Result",
+        "webhook": "https://oapi.dingtalk.com/robot/send?access_token=YOUR_ACCESS_TOKEN",
+        "secret": "YOUR_DINGTALK_SECRET",
+        "at_mobiles": [],
+        "extra_lines": [
+          "Triggered by webhook or manual API"
+        ]
+      }
+    },
+    {
+      "name": "project-b",
+      "repo_url": "http://your-git-host/group/project-b.git",
+      "repo_url_with_auth": "http://username:password@your-git-host/group/project-b.git",
+      "branch": "master",
+      "repo_dir": "/opt/auto-cicd/projects/project-b",
+      "maven_repo_local": "/opt/auto-cicd/repository",
+      "package_goal": "root",
+      "maven_profiles": [
+        "profile-a",
+        "profile-b"
+      ],
+      "artifact_module": "artifact-module",
+      "artifact_glob": "*.tar.gz",
+      "text_replacements": [
+        {
+          "path": "module/pom.xml",
+          "search": "<old>value</old>",
+          "replace": "<new>value</new>"
+        }
+      ],
+      "notify": {
+        "title": "Auto Build Result",
+        "webhook": "https://oapi.dingtalk.com/robot/send?access_token=YOUR_ACCESS_TOKEN",
+        "secret": "YOUR_DINGTALK_SECRET",
+        "at_mobiles": [],
+        "extra_lines": [
+          "Root pom offline build"
+        ]
+      }
+    }
+  ]
+}

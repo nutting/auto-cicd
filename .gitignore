@@ -1,0 +1,5 @@
+deploy/config.json
+deploy/__pycache__/
+*.pyc
+.DS_Store
+自动编译打包需求.md

@@ -1,0 +1,14 @@
+[Unit]
+Description=Auto CICD Build Service
+After=network.target
+
+[Service]
+Type=simple
+User=autocicd
+WorkingDirectory=/opt/auto-cicd
+ExecStart=/usr/bin/python3 /opt/auto-cicd/auto_cicd_server.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
